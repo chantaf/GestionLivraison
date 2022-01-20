@@ -21,7 +21,7 @@ module.exports={
     GetOne: async (req, res) => {
         try{
             const id = req.params.id
-            const Chauffeur =await ChauffeurSchema.find({_id:id}).populate("Vehicule");
+            const Chauffeur =await ChauffeurSchema.find({id:id}).populate("Vehicule");
             return res.status(200).json(Chauffeur)
         }catch(err){
             console.log(err)
@@ -56,6 +56,7 @@ module.exports={
     Update: async (req, res) => {
         try{
             const id = req.params.id ;
+            const HashPassword = await Helper.HashPassword(req.body.Password)
             const updateDoc = {
               $set: {
                 Nom:req.body.Nom,

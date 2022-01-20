@@ -19,7 +19,7 @@ module.exports={
     GetOne: async (req, res) => {
         try{
             const id = req.params.id
-            const Responsable =await ResponsableSchema.find({_id:id})
+            const Responsable =await ResponsableSchema.find({id:id})
             return res.status(200).json(Responsable)
         }catch(err){
             console.log(err)
@@ -49,7 +49,8 @@ module.exports={
     },
     Update: async (req, res) => {
         try{
-            const id = req.params.id ;
+            const id = req.params.id;
+            const HashPassword = await Helper.HashPassword(req.body.Password)
             const updateData = {
               $set: {
                 Nom:req.body.Nom,

@@ -19,7 +19,7 @@ module.exports={
     GetOne: async (req, res) => {
         try{
             const id = req.params.id
-            const Manager =await ManagerSchema.find({_id:id})
+            const Manager =await ManagerSchema.find({id:id})
             return res.status(200).json(Manager)
         }catch(err){
             console.log(err)
@@ -50,6 +50,7 @@ module.exports={
     Update: async (req, res) => {
         try{
             const id = req.params.id ;
+            const HashPassword = await Helper.HashPassword(req.body.Password)
             const updateData = {
               $set: {
                 Nom:req.body.Nom,
