@@ -1,0 +1,87 @@
+const ChauffeurSchema = require('../Modules/Chauffeur')
+const Helper = require('../Helpers')
+const Db = require('../Config')
+module.exports={
+    // ExistEmail: async (req,res)=>{
+    //     const Email = await Helper.CheckExistEmail(req.body.Email)
+    //     Email === 200 &&  res.status(200).send()
+    //     Email === 404 &&  res.status(404).send()
+    // },
+
+    //Afficher tout Chauffeur
+    Get: async (req, res) => {
+        try{
+            const Chauffeurs =await ChauffeurSchema.find().populate("Vehicule");
+            return res.status(200).json(Chauffeurs)
+        }catch(err){
+            return res.status(400).json(err)
+        }
+    },
+    //Afficher Chauffeur par Id
+    GetOne: async (req, res) => {
+        try{
+            const id = req.params.id
+            const Chauffeur =await ChauffeurSchema.find({_id:id}).populate("Vehicule");
+            return res.status(200).json(Chauffeur)
+        }catch(err){
+            console.log(err)
+        }
+    },
+    //Ajouter Chauffeur
+    Add: async (req, res) => {
+        const HashPassword = await Helper.HashPassword(req.body.Password)
+        const Chauffeur = {
+            Nom:req.body.Nom,
+            Email:req.body.Email,
+            Tel:req.body.Tel,
+            Password:HashPassword,
+            Ville:req.body.Ville, 
+            Salaire:req.body.Salaire, 
+            Vehicule:req.body.Vehicule,
+        }
+        try{
+            new ChauffeurSchema(Chauffeur)
+                .save()
+                .then(async (Chauffeur)=>{
+                    return res.status(201).send({Chauffeur})
+                    
+                })
+                .catch(err =>{
+                    return res.status(400).send(err)
+                })
+        }catch(err){
+                return res.status(400).send(err)
+        }
+    },
+    Update: async (req, res) => {
+        try{
+            const id = req.params.id ;
+            const updateDoc = {
+              $set: {
+                Nom:req.body.Nom,
+                Email:req.body.Email,
+                Tel:req.body.Tel,
+                Password:HashPassword,
+                Ville:req.body.Ville, 
+                Vehicule:req.body.Vehicule,
+              },
+            };
+            await ChauffeurSchema.findByIdAndUpdate(id, updateDoc);
+            return res.status(200).json("Succesfly updating")
+        }catch(err){
+            res.status(400).json(err)
+        }
+    },
+    Delete: async (req, res) => {
+        try{
+            const id = req.params.id
+            const Chauffeur =await ChauffeurSchema.deleteOne({id:id})
+            return res.status(200).json(Chauffeur)
+        }catch(err){
+            return res.status(400).json(err)
+        }
+    },
+}
+
+
+
