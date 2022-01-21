@@ -65,9 +65,10 @@ module.exports={
     Add: async (req, res) => {
     
     let Distance = await axios(`https://www.distance24.org/route.json?stops=${req.body.VilleD}%7C${req.body.VilleA}`)
-    let Prix = req.body.poids * 40;
+
+    let Prix = req.body.Poid * 40;
     if(req.body.Poid > 3){
-        Prix =(40*3) + (req.body.poids - 3) * 5;
+        Prix =(40*3) + (req.body.Poid - 3) * 5;
     }
    
         const Commande ={
@@ -190,6 +191,7 @@ module.exports={
               return res.status(400).send(err)
           })
     },
+    
     //Supprimer Commande
     Delete: async (req, res) => {
         try{

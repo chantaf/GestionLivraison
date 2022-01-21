@@ -4,8 +4,7 @@ const Prime = require('../Controllers/Prime')
 
 router.get('/',Prime.Get)
 router.get('/:id',Prime.GetOne)
-router.get('/CalculePrime',Prime.CalculePrime)
-router.put('/:id',Vehicule.Update)
-router.delete('/:id',Vehicule.Delete)
+router.get('/:livreur',Prime.GetpLivreur)
+
 
 module.exports = router

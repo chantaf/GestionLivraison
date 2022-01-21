@@ -4,7 +4,7 @@ module.exports={
     GetOne: async (req, res) => {
         try{
             const Id = req.params.id
-            const Vehicule =await VehiculeSchema.find({_id:Id})
+            const Vehicule =await VehiculeSchema.find({id:Id})
             return res.status(200).json(Vehicule)
         }catch(err){
             return res.status(400).json(err)
@@ -48,7 +48,7 @@ module.exports={
                 Matricule:req.body.Matricule
               },
             };
-            await AdminSchema.findByIdAndUpdate(id, updateData);
+            await VehiculeSchema.findByIdAndUpdate(id,updateData);
             return res.status(200).json("modifié avec succès")
         }catch(err){
             res.status(400).json(err)
@@ -58,12 +58,13 @@ module.exports={
     Delete: async (req, res) => {
         try{
             const id = req.params.id
-            const Admin =await AdminSchema.deleteOne({id:id})
+            const Admin =await VehiculeSchema.deleteOne({id:id})
             return res.status(200).json(Admin)
         }catch(err){
             return res.status(400).json(err)
         }
     },
+
 }
 
 

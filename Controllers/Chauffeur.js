@@ -67,8 +67,8 @@ module.exports={
                 Vehicule:req.body.Vehicule,
               },
             };
-            await ChauffeurSchema.findByIdAndUpdate(id, updateDoc);
-            return res.status(200).json("Succesfly updating")
+            await ChauffeurSchema.findByIdAndUpdate(id,updateDoc);
+            return res.status(200).json("modifié avec succès")
         }catch(err){
             res.status(400).json(err)
         }

@@ -9,7 +9,7 @@ module.exports={
     GetOne: async (req, res) => {
         try{
             const id = req.params.id
-            const Prime =await PrimeSchema.find({_id:id})
+            const Prime =await PrimeSchema.find({id:id})
             return res.status(200).json(Prime)
         }catch(err){
             console.log(err)
@@ -68,9 +68,6 @@ module.exports={
     },
 
 
-  
-
-  
     
 }
 

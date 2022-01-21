@@ -8,9 +8,10 @@ const ResponsableRouter = require('./Responsable');
 const VehiculeRouter = require('./Vehicule');
 const CommandeRouter = require('./Commande');
 const AuthAdminRouter = require('./Auth');
-const AuthChaffeurRouter = require('./AuthChauffeur');
+const AuthChauffeurRouter = require('./AuthChauffeur');
 const AuthManagerRouter = require('./AuthManager');
 const AuthResponsableRouter = require('./AuthResponsable');
+const PrimeRouter = require('./Prime');
 
 
 
@@ -21,9 +22,10 @@ router.use("/Responsable", ResponsableRouter);
 router.use("/Vehicule", VehiculeRouter);
 router.use("/Commande", CommandeRouter);
 router.use("/AuthAdmin", AuthAdminRouter);
-router.use("/AuthChaffeur", AuthChaffeurRouter);
+router.use("/AuthChauffeur", AuthChauffeurRouter);
 router.use("/AuthManager", AuthManagerRouter);
 router.use("/AuthResponsable", AuthResponsableRouter);
+router.use("/Prime", PrimeRouter);
 module.exports = router
 
 
