@@ -6,6 +6,6 @@ const Responsable = mongoose.Schema({
     Password:{type:String},
     Ville:{type:String},
 },{timestamps:true})
-mongoose.model('Responsable',Responsable);
+// mongoose.model('Responsable',Responsable);
 
 module.exports = mongoose.model('Responsable', Responsable);

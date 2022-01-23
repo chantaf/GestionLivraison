@@ -6,8 +6,9 @@ const Chauffeur = mongoose.Schema({
     Password:{type:String},
     Ville:{type:String},
     Salaire:{type:String},
-    Vehicule:{type:mongoose.Schema.Types.ObjectId,ref:'Vehicule'},
+    Vehicule:{type:mongoose.Schema.ObjectId,ref:'Vehicule'},
+  
 },{timestamps:true})
-mongoose.model('Chauffeur',Chauffeur);
+// mongoose.model('Chauffeur',Chauffeur);
 
 module.exports = mongoose.model('Chauffeur', Chauffeur);

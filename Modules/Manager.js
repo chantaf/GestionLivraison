@@ -6,6 +6,6 @@ const Manager = mongoose.Schema({
     Password:{type:String},
     Ville:{type:String},
 },{timestamps:true})
-mongoose.model('Manager',Manager);
+// mongoose.model('Manager',Manager);
 
 module.exports = mongoose.model('Manager',Manager);

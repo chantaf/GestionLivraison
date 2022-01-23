@@ -66,6 +66,7 @@ module.exports={
     
     let Distance = await axios(`https://www.distance24.org/route.json?stops=${req.body.VilleD}%7C${req.body.VilleA}`)
 
+    
     let Prix = req.body.Poid * 40;
     if(req.body.Poid > 3){
         Prix =(40*3) + (req.body.Poid - 3) * 5;
@@ -77,7 +78,7 @@ module.exports={
             VilleD:req.body.VilleD,
             VilleA:req.body.VilleA,
             Poid:req.body.Poid,
-            Distance:Distance.distance,
+            Distance:Distance.data.distance,
             Date:req.body.Date,
             Prix:Prix,
             Status:req.body.Status,
@@ -125,7 +126,7 @@ module.exports={
                 VilleD:req.body.VilleD,
                 VilleA:req.body.VilleA,
                 Poid:req.body.Poid,
-                Distance:Distance.distance,
+                Distance:Distance.data.distance,
                 Date:req.body.Date,
                 Prix:Prix,
                 Status:req.body.Status,

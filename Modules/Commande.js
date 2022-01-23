@@ -11,6 +11,6 @@ const Commande = mongoose.Schema({
     Status:{type:String},
     Livreur:{type:mongoose.Schema.Types.ObjectId,ref:'Chauffeur'},
 },{timestamps:true})
-mongoose.model('Commande',Commande);
+// mongoose.model('Commande',Commande);
 
 module.exports = mongoose.model('Commande', Commande);

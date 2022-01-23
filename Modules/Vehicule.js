@@ -4,6 +4,7 @@ const Vehicule = mongoose.Schema({
     Categorie:{type:String},
     Matricule:{type:String},
 },{timestamps:true})
-mongoose.model('Vehicule',Vehicule);
+
+// mongoose.model('Vehicule',Vehicule);
   
 module.exports = mongoose.model('Vehicule',Vehicule);

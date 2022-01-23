@@ -6,5 +6,5 @@ const Admin = mongoose.Schema({
     Password:{type:String},
     Zone:{type:String},
 },{timestamps:true})
-mongoose.model('Admin',Admin);
+// mongoose.model('Admin',Admin);
 module.exports = mongoose.model('Admin',Admin);

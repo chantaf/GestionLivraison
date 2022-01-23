@@ -7,6 +7,6 @@ const Prime = mongoose.Schema({
     Distance:{type:String},
     Livreur:{type:mongoose.Schema.Types.ObjectId,ref:'Chauffeur'},
 },{timestamps:true})
-mongoose.model('Prime',Prime);
+// mongoose.model('Prime',Prime);
 
 module.exports = mongoose.model('Prime', Prime);

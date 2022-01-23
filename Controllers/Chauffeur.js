@@ -8,6 +8,7 @@ module.exports={
     //     Email === 404 &&  res.status(404).send()
     // },
 
+    
     //Afficher tout Chauffeur
     Get: async (req, res) => {
         try{
@@ -17,6 +18,7 @@ module.exports={
             return res.status(400).json(err)
         }
     },
+
     //Afficher Chauffeur par Id
     GetOne: async (req, res) => {
         try{
@@ -39,19 +41,28 @@ module.exports={
             Salaire:req.body.Salaire, 
             Vehicule:req.body.Vehicule,
         }
-        try{
-            new ChauffeurSchema(Chauffeur)
+       
+        try {
+            const Chauffeurs = await ChauffeurSchema.find({Vehicule: req.body.Vehicule}).populate("Vehicule");
+
+            Chauffeurs.forEach(element => {
+              if(element.Vehicule.id == req.body.Vehicule){
+                res.status(201).json("vehicule Occupé");
+              }else{
+                new ChauffeurSchema(Chauffeur)
                 .save()
                 .then(async (Chauffeur)=>{
                     return res.status(201).send({Chauffeur})
                     
                 })
-                .catch(err =>{
-                    return res.status(400).send(err)
-                })
-        }catch(err){
-                return res.status(400).send(err)
-        }
+              }
+           
+            });
+          
+          } catch (err) {
+            res.status(404).json({ message: err.message });
+          }
+      
     },
     Update: async (req, res) => {
         try{
