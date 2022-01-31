@@ -12,8 +12,10 @@ module.exports={
         bcrypt.compare(req.body.Password, Admin.Password).then(async (validPass) => {
             !validPass &&  res.status(200).send({Message : 'Password Incorrect'})
             
+            const Role="Admin"
             const token = await Helper.CreateJwt(Admin._id,"1h")
-            return res.status(201).send({token})
+            const Reponse={token,Role}
+            return res.status(201).send({Reponse})
         }).catch(err => res.status(400).send({Message : err}));
     },
   //Logout
